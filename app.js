@@ -1,0 +1,38 @@
+require("dotenv").config();
+const cookieParser = require("cookie-parser");
+const { authRouter } = require("./routers/authRouter");
+const connectDb = require("./utils/database");
+const cors = require("cors");
+const express = require("express");
+const captionsRouter = require("./routers/captionRouter");
+const getJobs = require("./routers/jobRouter");
+const jobRouter = require("./routers/jobRouter");
+
+const app = express();
+const PORT = 9999;
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  }),
+);
+
+app.use(express.json());
+app.use(cookieParser());
+app.use(jobRouter);
+app.use(authRouter);
+app.use(captionsRouter);
+
+const startServer = async () => {
+  try {
+    await connectDb();
+    console.log("Your Database Connected Successfully");
+    app.listen(PORT, () => {
+      console.log("Your app Listening on the PORT", PORT);
+    });
+  } catch (err) {
+    console.log("something went wrong");
+  }
+};
+
+startServer();
