@@ -20,6 +20,7 @@ authRouter.post("/signup", async (req, res) => {
       email,
       password: hashedPassoword,
       verificationCode,
+      isPremium,
     });
     sendVerificationEmail(email, verificationCode);
     await user.save();
