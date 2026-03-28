@@ -26,7 +26,6 @@ app.use(cookieParser());
 app.use("/", jobRouter);
 app.use("/", authRouter);
 app.use("/", captionsRouter);
-app.use("/payment/webhook", express.raw({ type: "*/*" }));
 app.use("/", paymentRouter);
 
 const startServer = async () => {
