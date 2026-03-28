@@ -17,7 +17,7 @@ paymentRouter.post("/payment/create", authUser, async (req, res) => {
       },
     });
     const payment = new Payment({
-      uesrId: req.user._id,
+      userId: req.user._id,
       orderId: order.id,
       status: order.status,
       amount: order.amount,
@@ -32,5 +32,7 @@ paymentRouter.post("/payment/create", authUser, async (req, res) => {
     res.status(500).json({ msg: err.message });
   }
 });
+
+paymentRouter.post();
 
 module.exports = paymentRouter;
