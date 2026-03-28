@@ -31,7 +31,7 @@ const startServer = async () => {
       console.log("Your app Listening on the PORT", PORT);
     });
   } catch (err) {
-    console.log("something went wrong");
+    console.error("Server start error:", err);
   }
 };
 
