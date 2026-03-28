@@ -9,7 +9,7 @@ const getJobs = require("./routers/jobRouter");
 const jobRouter = require("./routers/jobRouter");
 
 const app = express();
-const PORT = 9999;
+const PORT = process.env.PORT || 9999;
 app.use(
   cors({
     origin: ["http://localhost:5173", "https://unotify.tanishqsaxena.xyz"],
