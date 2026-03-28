@@ -67,7 +67,7 @@ authRouter.post("/login", async (req, res) => {
       res.cookie("token", token);
       res.json({ data: user });
     } else {
-      res.send("No User Found");
+      res.send("Something went wrong");
     }
   } catch (err) {
     res.status(400).send(err.message);

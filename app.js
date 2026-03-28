@@ -7,9 +7,11 @@ const express = require("express");
 const captionsRouter = require("./routers/captionRouter");
 const getJobs = require("./routers/jobRouter");
 const jobRouter = require("./routers/jobRouter");
+const paymentRouter = require("./routers/payment");
 
 const app = express();
-const PORT = process.env.PORT || 9999;
+const PORT = 9999;
+// const PORT = process.env.PORT
 app.use(
   cors({
     origin: ["http://localhost:5173", "https://unotify.tanishqsaxena.xyz"],
@@ -19,9 +21,10 @@ app.use(
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(jobRouter);
-app.use(authRouter);
-app.use(captionsRouter);
+app.use("/", jobRouter);
+app.use("/", authRouter);
+app.use("/", captionsRouter);
+app.use("/", paymentRouter);
 
 const startServer = async () => {
   try {
