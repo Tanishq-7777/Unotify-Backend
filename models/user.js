@@ -19,6 +19,10 @@ const userScheema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    isPremium: {
+      type: Boolean,
+      default: false,
+    },
     verificationCode: String,
   },
   { timestamps: true },
