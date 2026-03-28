@@ -12,7 +12,7 @@ const app = express();
 const PORT = 9999;
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: ["http://localhost:5173", "https://unotify.tanishqsaxena.xyz"],
     credentials: true,
   }),
 );
