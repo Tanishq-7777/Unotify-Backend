@@ -7,6 +7,7 @@ const express = require("express");
 const captionsRouter = require("./routers/captionRouter");
 const getJobs = require("./routers/jobRouter");
 const jobRouter = require("./routers/jobRouter");
+
 const paymentRouter = require("./routers/payment");
 
 const app = express();
@@ -25,6 +26,7 @@ app.use(cookieParser());
 app.use("/", jobRouter);
 app.use("/", authRouter);
 app.use("/", captionsRouter);
+app.use("/payment/webhook", express.raw({ type: "*/*" }));
 app.use("/", paymentRouter);
 
 const startServer = async () => {
