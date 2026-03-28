@@ -27,8 +27,12 @@ authRouter.post("/signup", async (req, res) => {
     const token = jwt.sign({ userId: user._id }, "2026$ASTROWORLD", {
       expiresIn: "30d",
     });
-
-    res.cookie("token", token);
+    const isProd = process.env.NODE_ENV === "production";
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: isProd,
+      sameSite: isProd ? "None" : "Lax",
+    });
     res.json({ data: user });
   } catch (err) {
     res.status(400).send(err.message);
@@ -64,7 +68,12 @@ authRouter.post("/login", async (req, res) => {
       const token = jwt.sign({ userId: user._id }, "2026$ASTROWORLD", {
         expiresIn: "30d",
       });
-      res.cookie("token", token);
+      const isProd = process.env.NODE_ENV === "production";
+      res.cookie("token", token, {
+        httpOnly: true,
+        secure: isProd,
+        sameSite: isProd ? "None" : "Lax",
+      });
       res.json({ data: user });
     } else {
       res.send("Something went wrong");
