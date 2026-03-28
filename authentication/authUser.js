@@ -8,7 +8,7 @@ const authUser = async (req, res, next) => {
   //verify the token
   const { userId } = jwt.verify(token, "2026$ASTROWORLD");
   const user = await User.findById(userId).select(
-    "name email password isVerified",
+    "name email  isVerified isPremium",
   );
   if (!user) {
     return res.status(401).send("Your Token Is Invalid.");
